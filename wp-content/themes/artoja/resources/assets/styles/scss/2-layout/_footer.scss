@@ -2,6 +2,12 @@
 /*=============================================
 =            footer            =
 =============================================*/
+.footer-logo {
+    img {
+        height: auto;
+        max-width: 270px;
+    }
+}
 
 .footer-text-block{
     &__title{
@@ -35,7 +41,7 @@
     nav{
         ul{
             display: grid;
-            grid-template-columns: auto auto;
+            grid-template-columns: auto auto auto;
 
             li{
                 display: list-item;
@@ -58,7 +64,7 @@
                     }
 
                     &:hover{
-                        color: $apple-green;
+                        color: $pomegranate-red;
                     }
                 }
             }
@@ -158,11 +164,11 @@
 
                     a{
                         &:hover{
-                            color: $apple-green-light;
+                            color: $pomegranate-red;
                         }
                     }
                 }
-                
+
             }
         }
     }
@@ -171,7 +177,7 @@
         p{
             a{
                 &:hover{
-                    color: $apple-green-light;
+                    color: $pomegranate-red;
                 }
             }
         }
@@ -197,7 +203,7 @@
                         }
                     }
                 }
-                
+
             }
         }
     }
@@ -231,7 +237,7 @@
                         }
                     }
                 }
-                
+
             }
         }
     }

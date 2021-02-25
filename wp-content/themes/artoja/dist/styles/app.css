@@ -1596,6 +1596,11 @@ select {
 /*=============================================
 =            footer            =
 =============================================*/
+.footer-logo img {
+  height: auto;
+  max-width: 270px;
+}
+
 .footer-text-block__title {
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
@@ -1638,7 +1643,7 @@ select {
 
 .footer-navigation nav ul {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
 }
 .footer-navigation nav ul li {
   display: list-item;
@@ -1663,7 +1668,7 @@ select {
   }
 }
 .footer-navigation nav ul li a:hover {
-  color: #3EB65B;
+  color: #f0475c;
 }
 
 .footer-social-icon-block ul li {
@@ -1731,10 +1736,10 @@ select {
 =            light green page style            =
 =============================================*/
 .page-wrapper-light-green .footer-navigation nav ul li a:hover {
-  color: #3EB65B;
+  color: #f0475c;
 }
 .page-wrapper-light-green .copyright-text p a:hover {
-  color: #3EB65B;
+  color: #f0475c;
 }
 
 /*=====  End of light green page style  ======*/
