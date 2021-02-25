@@ -83,6 +83,7 @@ if( function_exists('acf_add_options_page') ) {
 
 }
 
+
 add_filter('woocommerce_format_sale_price', 'ss_format_sale_price', 100, 3);
 function ss_format_sale_price( $price, $regular_price, $sale_price ) {
     $output_ss_price = '<span id="priceBefore"  class="old-price">' . ( is_numeric( $regular_price ) ? wc_price( $regular_price ) : $regular_price ) . '</span> <span id="priceAfter" class="price">' . ( is_numeric( $sale_price ) ? wc_price( $sale_price ) : $sale_price ) . '</span>';
