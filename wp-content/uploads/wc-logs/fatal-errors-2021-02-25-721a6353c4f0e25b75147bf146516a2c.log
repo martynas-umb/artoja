@@ -1,0 +1,30 @@
+2021-02-25T21:26:12+00:00 CRITICAL Klaidos žinutė: Uncaught Error: Call to undefined function get_post_thumbnail() in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/f53740427a7a0349e4e16d326247c9c07d6d0c5c.php:115
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#5 /Users/mone/Sites/artoja/wp-content/themes/artoja/index.php(19): Illuminate\View\View->render()
+#6 / (rasta faile /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/f53740427a7a0349e4e16d326247c9c07d6d0c5c.php, eilutės numeris 115)
+
+2021-02-25T21:26:12+00:00 CRITICAL Klaidos žinutė: Uncaught Error: Call to undefined function get_post_thumbnail() in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/f53740427a7a0349e4e16d326247c9c07d6d0c5c.php:115
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#5 /Users/mone/Sites/artoja/wp-content/themes/artoja/index.php(19): Illuminate\View\View->render()
+#6 / (rasta faile /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/f53740427a7a0349e4e16d326247c9c07d6d0c5c.php, eilutės numeris 115)
+
+2021-02-25T21:57:07+00:00 CRITICAL Klaidos žinutė: Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/f53740427a7a0349e4e16d326247c9c07d6d0c5c.php:126
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/index.php(19): Illuminate\View\View->render()
+#5 /Users/mone/Sites/artoja/wp-includes/template-loader.php(106): include('/Users/mone/Sit...')
+#6 /Users/mone/Sites (rasta faile /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/f53740427a7a0349e4e16d326247c9c07d6d0c5c.php, eilutės numeris 126)
+

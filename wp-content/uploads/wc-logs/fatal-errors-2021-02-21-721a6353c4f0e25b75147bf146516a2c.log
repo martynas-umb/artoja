@@ -1,0 +1,84 @@
+2021-02-21T22:41:20+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function e(), 0 passed in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 78 and at least 1 expected in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php:252
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php(78): e()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include('/Users/mone/Sit...')
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/vi in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php on line 252
+
+2021-02-21T22:41:20+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function e(), 0 passed in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 78 and at least 1 expected in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php:252
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php(78): e()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include('/Users/mone/Sit...')
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/vi in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php on line 252
+
+2021-02-21T22:41:20+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function e(), 0 passed in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 78 and at least 1 expected in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php:252
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php(78): e()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include('/Users/mone/Sit...')
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/vi in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php on line 252
+
+2021-02-21T22:41:21+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function e(), 0 passed in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 78 and at least 1 expected in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php:252
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php(78): e()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include('/Users/mone/Sit...')
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/vi in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php on line 252
+
+2021-02-21T22:41:21+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function e(), 0 passed in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 78 and at least 1 expected in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php:252
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php(78): e()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include('/Users/mone/Sit...')
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/vi in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php on line 252
+
+2021-02-21T22:41:21+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function e(), 0 passed in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 78 and at least 1 expected in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php:252
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php(78): e()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include('/Users/mone/Sit...')
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/vi in /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/support/helpers.php on line 252
+
+2021-02-21T23:32:53+00:00 CRITICAL Uncaught Error: Class 'Custom_Walker_Nav_Menu' not found in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php:219
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#5 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/e464243e1ff60fd4172b05018f0204ddb in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 219
+
+2021-02-21T23:32:54+00:00 CRITICAL Uncaught Error: Class 'Custom_Walker_Nav_Menu' not found in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php:219
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/PhpEngine.php(41): include()
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#5 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/e464243e1ff60fd4172b05018f0204ddb in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 219
+
+2021-02-21T23:39:33+00:00 CRITICAL Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php:219
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/e464243e1ff60fd4172b05018f0204ddbee979b0.php(1): Illuminate\View\View->render()
+#5 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendo in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 219
+
+2021-02-21T23:39:33+00:00 CRITICAL Uncaught ParseError: syntax error, unexpected ';', expecting ')' in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php:219
+Stack trace:
+#0 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/Users/mone/Sit...', Array)
+#1 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/Users/mone/Sit...', Array)
+#2 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(122): Illuminate\View\View->getContents()
+#3 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendor/illuminate/view/View.php(91): Illuminate\View\View->renderContents()
+#4 /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/e464243e1ff60fd4172b05018f0204ddbee979b0.php(1): Illuminate\View\View->render()
+#5 /Users/mone/Sites/artoja/wp-content/themes/artoja/vendo in /Users/mone/Sites/artoja/wp-content/themes/artoja/storage/framework/views/99fc15c3db82ee5ad80af04a9c95c1a63ce81552.php on line 219
+
