@@ -214,7 +214,7 @@
                     <!--=======  section title  =======-->
 
                     <div class="section-title mb-20">
-                        <h2>{{ get_field('product_slider_title') }}</h2>
+                        <h2>{{ get_field('banner_section_title') }}</h2>
                     </div>
 
                     <!--=======  End of section title  =======-->
