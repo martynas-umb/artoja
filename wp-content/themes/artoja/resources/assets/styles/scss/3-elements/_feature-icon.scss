@@ -4,10 +4,38 @@
 =============================================*/
 
 .icon-feature-wrapper{
-    border-top: 1px solid #ededed; 
+    border-top: 1px solid #ededed;
     border-bottom: 1px solid #ededed;
-    padding: 30px 0; 
-
+    padding: 30px 0;
+  .item {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+      @media(max-width: 992px) {
+          margin-bottom: 2rem;
+      }
+      .icon:after {
+          content: "";
+          width: 25px;
+          height: 3px;
+          background-color: $apple-green-light;
+          text-align: center;
+          margin: 10px auto;
+          display: block;
+      }
+      img {
+          max-width: 70px;
+      }
+      .title p {
+          font-size: 15px;
+          color: #333;
+          font-weight: 400;
+          line-height: 20px;
+          font-family: "Montserrat", sans-serif;
+          transition: 0.3s;
+      }
+ }
     @media #{$tablet-device}{
         margin-top: -15px;
     }
@@ -70,14 +98,14 @@
 
 .page-wrapper-light-green{
     .single-icon-feature{
-       
+
         &__content{
             p{
                 margin-bottom: 0;
                 &.feature-title{
                     @include font-prop(14px, $apple-green-light, 600, 18px);
                 }
-                
+
             }
         }
     }
@@ -91,14 +119,14 @@
 
 .page-wrapper-blue{
     .single-icon-feature{
-       
+
         &__content{
             p{
                 margin-bottom: 0;
                 &.feature-title{
                     @include font-prop(14px, $cerulean-blue, 600, 18px);
                 }
-                
+
             }
         }
     }

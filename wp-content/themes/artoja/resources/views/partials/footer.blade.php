@@ -4,54 +4,42 @@
       <div class="col-lg-12">
         <div class="footer-content-wrapper border-top pt-40">
           <div class="row">
+            <div class="col-lg-12">
+              <div class="footer-logo mb-25">
+                {!! wp_get_attachment_image(get_field('footer_logo','options'),'full') !!}
+              </div>
+            </div>
             <div class="col-lg-4 col-md-6">
               <!--=======  single footer widget  =======-->
-
               <div class="single-footer-widget">
-                <div class="footer-logo mb-25">
-                  {!! wp_get_attachment_image(get_field('footer_logo','options'),'full') !!}
+                <div class="footer-text-block mb-10">
+                  <h5 class="footer-text-block__title">{{ __('Susisiekime:','artoja') }}</h5>
+                  <p class="footer-text-block__content"><a href="tel:{{ get_field('phone','options') }}">{{ get_field('phone','options') }}</a></p>
                 </div>
 
                 <div class="footer-text-block mb-10">
-                  <h5 class="footer-text-block__title">Susisiekime:</h5>
-                  <p class="footer-text-block__content"><a href="tel:+37069939452">+370 69 939 452</a></p>
-                </div>
-
-                <div class="footer-text-block mb-10">
-                  <h5 class="footer-text-block__title">Adresas:</h5>
-                  <p class="footer-text-block__content">Ukmergės g. 315A-6, Vilnius</p>
+                  <h5 class="footer-text-block__title">{{ __('Adresas:','artoja') }}</h5>
+                  <p class="footer-text-block__content">{{ get_field('address','options') }}</p>
                 </div>
                 <div class="footer-text-block mb-10">
-                  <h5 class="footer-text-block__title">Darbo laikas:</h5>
-                  <p class="footer-text-block__content">I-IV 08:00 - 20:00<br>V 08:00 - 20:00</p>
+                  <h5 class="footer-text-block__title">{{ __('Darbo laikas:','artoja') }}</h5>
+                  <div class="footer-text-block__content">{!! get_field('working_time','options') !!}</div>
                 </div>
               </div>
 
               <!--=======  End of single footer widget  =======-->
             </div>
-
+            @if(get_field('footer_links','option'))
             <div class="col-lg-6 col-md-6 mt-sm-30">
               <!--=======  single footer widget  =======-->
-              <div class="footer-logo mb-25" style="opacity: 0">
-                {!! wp_get_attachment_image(get_field('footer_logo','options'),'full') !!}
-              </div>
               <div class="single-footer-widget">
                 <h4 class="footer-widget-title">Informacija</h4>
                 <div class="footer-navigation">
                   <nav>
                     <ul>
-                      <li><a href="#">Apie mus</a></li>
-                      <li><a href="#">Kontaktai</a></li>
-                      <li><a href="#">Contact Us</a></li>
-                      <li><a href="#">Privatumo politika</a></li>
-                      <li><a href="#">Taisyklės</a></li>
-                      <li><a href="#">Kaip pirkti ?</a></li>
-                      <li><a href="#">Apmokėjimas</a></li>
-                      <li><a href="#">Pristatymas</a></li>
-                      <li><a href="#">Garantija</a></li>
-                      <li><a href="#">Grąžinimas</a></li>
-                      <li><a href="#">Karjera</a></li>
-                      <li><a href="#">Privatumo pirkimo taisyklės</a></li>
+                      @foreach(get_field('footer_links','option') as $item)
+                      <li><a href="{{ $item['link']['url'] }}">{{ $item['link']['title'] }}</a></li>
+                      @endforeach
                     </ul>
                   </nav>
                 </div>
@@ -59,6 +47,7 @@
 
               <!--=======  End of single footer widget  =======-->
             </div>
+            @endif
           </div>
         </div>
       </div>

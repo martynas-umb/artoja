@@ -850,7 +850,7 @@
 
 /*----------  double row slider  ----------*/
 .product-double-row-slider-wrapper{
-    .two-col-slider {
+    .two-col-slider,.two-col-slider-small,.ht-half-slider {
         position: relative;
         .slick-arrow {
             &:hover,&:focus {
@@ -904,7 +904,7 @@
         font-size: 16px;
         position: absolute;
         z-index: 2;
-        top: -58px;
+        top: -40px;
         width: 33px;
         height: 33px;
         -webkit-transition: .3s;
@@ -930,11 +930,13 @@
 
         &>div{
             &:last-child{
-                margin-top: 20px;
+                //margin-top: 20px;
             }
         }
     }
-
+    //.two-col-slider-small .slick-list {
+    //    margin: 0;
+    //}
 
 }
 
@@ -1502,6 +1504,20 @@
     }
 }
 
+.ht-half-slider {
+
+    .slick-slide {
+
+        img {
+            width: 100%;
+        }
+
+        .product-short-desc {
+            padding: 0;
+        }
+    }
+
+}
 
 
 

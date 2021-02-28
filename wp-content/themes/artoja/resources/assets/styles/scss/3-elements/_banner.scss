@@ -12,7 +12,7 @@
 
         a{
             display: block;
-            width: 100%; 
+            width: 100%;
 
             img{
                 transition: 0.6s;
@@ -24,7 +24,7 @@
                 }
             }
         }
-        
+
         &__content{
             position: absolute;
             top: 50%;
@@ -70,7 +70,7 @@
                                 font-size: 19px;
                                 line-height: 19px;
                             }
-    
+
                             @media #{$extra-small-mobile}{
                                 font-size: 19px;
                                 line-height: 19px;
@@ -89,12 +89,12 @@
                             font-size: 15px;
                             line-height: 15px;
                         }
-                        
+
 
                         .amount{
                             margin-top: 5px;
                             display: block;
-                            @include font-prop(24px, $apple-green, 600, 24px);
+                            @include font-prop(24px, $pomegranate-red, 600, 24px);
 
                             @media #{$tablet-device}{
                                 font-size: 18px;
@@ -247,7 +247,7 @@
                     line-height: 30px;
                 }
             }
-    
+
             h4{
                 font-size: 52px;
                 line-height: 52px;
@@ -265,9 +265,9 @@
                     font-size: 30px;
                     line-height: 30px;
                 }
-    
+
             }
-    
+
             p{
                 font-size: 16px;
                 line-height: 24px;
@@ -275,15 +275,15 @@
                 font-weight: 400;
                 margin-bottom: 30px;
             }
-    
+
             .banner-two-button{
                 background-color: $white;
                 color: $mine-shaft-black;
                 border-radius: 5px;
-    
+
                 &:hover{
                     background-color: $candle-light-yellow;
-    
+
                 }
 
                 @media #{$extra-small-mobile}{
@@ -357,7 +357,7 @@
         @media #{$extra-small-mobile}{
             max-width: 100%;
         }
-    
+
         h3{
             @include font-prop(70px, #333, 500, 70px);
             letter-spacing: -1px;
@@ -475,7 +475,7 @@
 
 
 
-        
+
 /*=============================================
 =            light green page style            =
 =============================================*/
@@ -503,7 +503,7 @@
 
 /*=====  End of light green page style  ======*/
 
-        
+
 /*=============================================
 =            red page style            =
 =============================================*/
@@ -530,7 +530,7 @@
 
 
 /*=====  End of red page style  ======*/
-        
+
 /*=============================================
 =            blue page style            =
 =============================================*/

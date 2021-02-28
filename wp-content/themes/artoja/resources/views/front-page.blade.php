@@ -77,7 +77,42 @@
             </div>
         </div>
     </div>
-    <div class="product-double-row-slider-area mb-40" style="padding-bottom: 350px">
+    <?php $icons = get_field('icons'); ?>
+    @if($icons)
+        <div class="icon-feature-area mb-40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--=======  icon feature wrapper  =======-->
+
+                        <div class="icon-feature-wrapper">
+                            <div class="row">
+                                @foreach($icons as $item)
+                                    <div class="col-6 col-lg-2 col-sm-6 icon-item">
+                                        <!--=======  single icon feature  =======-->
+
+                                        <div class="item">
+                                            <div class="icon">
+                                                {!! wp_get_attachment_image($item['icon'],'full') !!}
+                                            </div>
+                                            <div class="title">
+                                                <p>{{ $item['title'] }}</p>
+                                            </div>
+                                        </div>
+
+                                        <!--=======  End of single icon feature  =======-->
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!--=======  End of icon feature wrapper  =======-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    <div class="product-double-row-slider-area mb-40">
         <div class="container">
 
             <div class="row">
@@ -85,7 +120,7 @@
                     <!--=======  section title  =======-->
 
                     <div class="section-title mb-20">
-                        <h2>New Products</h2>
+                        <h2>{{ get_field('product_slider_title') }}</h2>
                     </div>
 
                     <!--=======  End of section title  =======-->
@@ -96,529 +131,74 @@
                 <div class="col-lg-12">
                     <!--=======  product double row slider wrapper  =======-->
                     <div class="page-wrapper-light-green">
-                    <div class="product-double-row-slider-wrapper">
-                        <div class="two-col-slider">
-                            <?php
-                            $args = array(
-                                'post_type' => 'product',
-                                'posts_per_page' => 10
-                            );
-                            $loop = new WP_Query( $args );
-                            if ( $loop->have_posts() ) {
+                        <div class="product-double-row-slider-wrapper">
+                            <div class="two-col-slider">
+                                <?php
+                                $args = array(
+                                    'post_type' => 'product',
+                                    'posts_per_page' => -1,
+                                    'tax_query'      => array( array(
+                                        'taxonomy'   => 'product_cat',
+                                        'field'      => 'term_id',
+                                        'terms'      => get_field('category'),
+                                    ))
+                                    );
+                                $loop = new WP_Query($args);
+                                if ( $loop->have_posts() ) {
                                 while ( $loop->have_posts() ) : $loop->the_post();
                                 $product = wc_get_product(get_the_ID());
                                 ?>
-                                <div class="slick-slide">
+
                                     <div>
                                         <div class="single-slider-product-wrapper">
                                             <div class="single-slider-product">
                                                 <div class="single-slider-product__image">
                                                     <a href="{{get_permalink()}}">
-                                                        <img src="{{wp_get_attachment_url( $product->get_image_id() )}}" />
+                                                        <img src="{{wp_get_attachment_url( $product->get_image_id() )}}"/>
                                                     </a>
-                                                    <span class="discount-label discount-label--green">-10%</span>
+                                                    @if(sale_badge_percentage())
+                                                        <span class="discount-label discount-label--green">{{ sale_badge_percentage() }}</span>
+                                                    @endif
                                                 </div>
 
                                                 <div class="single-slider-product__content">
-                                                    <p class="product-title"><a href="single-product.html">{{ the_title() }}</a></p>
-                                                    <p class="product-price"><span class="discounted-price">
-
-{{--                                                                @if($product->is_on_sale())--}}
-{{--                                                                    <span class="regular-price">--}}
-{{--                                                                        {!! get_woocommerce_currency_symbol().$product->get_regular_price() !!}--}}
-{{--                                                                    </span>--}}
-{{--                                                                <span class="sale-price">--}}
-{{--                                                                        {!! get_woocommerce_currency_symbol().$product->get_sale_price() !!}--}}
-{{--                                                                    </span>--}}
-{{--                                                                @else--}}
-{{--                                                                <span class="regular-price">--}}
-{{--                                                                        {!! get_woocommerce_currency_symbol().$product->get_regular_price() !!}--}}
-{{--                                                                    </span>--}}
-{{--                                                                @endif--}}
-
+                                                    <p class="product-title"><a
+                                                                href="{{get_permalink()}}}">{{ the_title() }}</a></p>
+                                                    <p class="product-price">
+                                                        <span class="discounted-price">
                                                             {!! $product->get_price_html() !!}
+                                                        <span class="cart-icon buy-item"
+                                                              data-id="{{$product->get_id()}}">
+                                                        <span class="buy-item">
+                                                            {!! apply_filters
+                                                                (
+                                                        'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+                                                        sprintf(
+                                                            '<a href="%s" data-quantity="%s" class="%s" %s><i class="icon-shopping-cart"></i></a>',
+                                                            esc_url( $product->add_to_cart_url() ),
+                                                            esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+                                                            esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+                                                            isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+                                                            esc_html( $product->add_to_cart_text() )
+                                                        ),
+                                                        $product,
+                                                        $args
+                                                    ) !!}
                                                         </span>
-
-                                                    <span class="cart-icon"><a href="javascript:void(0)"><i
-                                                                    class="icon-shopping-cart"></i></a></span>
+                                                    </span>
+                                                        </span>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                </div>
+
                                 <?php endwhile;
-                            }
-                            wp_reset_postdata();
-                            ?>
-{{--                            <div class="slick-slide" >--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="/assets/img/products/medium1.jpg" class="img-fluid" alt="">--}}
-{{--                                                    <img src="/assets/img/products/medium2.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-10%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$100.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide" >--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium5.jpg" class="img-fluid" alt="">--}}
-{{--                                                    <img src="assets/img/products/medium6.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-20%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$30.00</span>--}}
-{{--                                                    <span class="main-price discounted">$50.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide" >--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium9.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-10%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$50.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium3.jpg" class="img-fluid" alt="">--}}
-{{--                                                    <img src="assets/img/products/medium4.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-15%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Lorem ipsum--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$50.00</span>--}}
-{{--                                                    <span class="main-price discounted">$70.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium7.jpg" class="img-fluid" alt="">--}}
-{{--                                                    <img src="assets/img/products/medium8.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-20%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Lorem ipsum--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$50.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium1.jpg" class="img-fluid" alt="">--}}
-{{--                                                    <img src="assets/img/products/medium2.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-10%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$100.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium5.jpg" class="img-fluid" alt="">--}}
-{{--                                                    <img src="assets/img/products/medium6.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-20%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$30.00</span>--}}
-{{--                                                    <span class="main-price discounted">$50.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium9.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-10%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$50.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium9.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-10%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$50.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="slick-slide">--}}
-{{--                                <div>--}}
-{{--                                    <div class="single-slider-product-wrapper">--}}
-{{--                                        <div class="single-slider-product">--}}
-{{--                                            <div class="single-slider-product__image">--}}
-{{--                                                <a href="single-product.html">--}}
-{{--                                                    <img src="assets/img/products/medium9.jpg" class="img-fluid" alt="">--}}
-{{--                                                </a>--}}
-
-{{--                                                <span class="discount-label discount-label--green">-10%</span>--}}
-
-{{--                                                <div class="hover-icons">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a data-toggle="modal"--}}
-{{--                                                               data-target="#quick-view-modal-container"--}}
-{{--                                                               href="javascript:void(0)"><i class="icon-eye"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i class="icon-heart"></i></a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li><a href="javascript:void(0)"><i--}}
-{{--                                                                        class="icon-sliders"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-{{--                                            <div class="single-slider-product__content">--}}
-{{--                                                <p class="product-title"><a href="single-product.html">Cillum dolore--}}
-{{--                                                        garden tools</a></p>--}}
-{{--                                                <div class="rating">--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star active"></i>--}}
-{{--                                                    <i class="ion-android-star"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <p class="product-price"><span class="discounted-price">$50.00</span>--}}
-{{--                                                    <span class="main-price discounted">$120.00</span></p>--}}
-
-{{--                                                <span class="cart-icon"><a href="javascript:void(0)"><i--}}
-{{--                                                                class="icon-shopping-cart"></i></a></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                                }
+                                wp_reset_postdata();
+                                ?>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -626,5 +206,195 @@
             <!--=======  End of product double row slider wrapper  =======-->
         </div>
     </div>
+    <div class="product-double-row-slider-area mb-40 banner-double-row-slider-area">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=======  section title  =======-->
+
+                    <div class="section-title mb-20">
+                        <h2>{{ get_field('product_slider_title') }}</h2>
+                    </div>
+
+                    <!--=======  End of section title  =======-->
+                </div>
+            </div>
+
+            <div class="row row-10">
+                <div class="col-custom-5 mb-sm-30">
+                    <div class="slider-banner">
+                        <a href="{{ get_field('banner_link') }}">
+                            {!! wp_get_attachment_image(get_field('banner_section_image'),'full') !!}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-custom-7">
+                    <!--=======  product double row slider wrapper  =======-->
+                    <div class="page-wrapper-light-green">
+                        <div class="product-double-row-slider-wrapper">
+                            <div class="two-col-slider-small">
+                                <?php
+                                $args = array(
+                                    'post_type' => 'product',
+                                    'posts_per_page' => -1,
+                                    'tax_query'      => array( array(
+                                        'taxonomy'   => 'product_cat',
+                                        'field'      => 'term_id',
+                                        'terms'      => get_field('banner_category'),
+                                    ))
+                                );
+                                $loop = new WP_Query($args);
+                                if ( $loop->have_posts() ) {
+                                while ( $loop->have_posts() ) : $loop->the_post();
+                                $product = wc_get_product(get_the_ID());
+                                ?>
+                                    <div>
+                                        <div class="single-slider-product-wrapper">
+                                            <div class="single-slider-product">
+                                                <div class="single-slider-product__image">
+                                                    <a href="{{get_permalink()}}">
+                                                        <img src="{{wp_get_attachment_url( $product->get_image_id() )}}"/>
+                                                    </a>
+                                                    @if(sale_badge_percentage())
+                                                        <span class="discount-label discount-label--green">{{ sale_badge_percentage() }}</span>
+                                                    @endif
+                                                </div>
+
+                                                <div class="single-slider-product__content">
+                                                    <p class="product-title"><a
+                                                                href="{{get_permalink()}}}">{{ the_title() }}</a></p>
+                                                    <p class="product-price">
+                                                        <span class="discounted-price">
+                                                            {!! $product->get_price_html() !!}
+                                                        <span class="cart-icon buy-item"
+                                                              data-id="{{$product->get_id()}}">
+                                                        <span class="buy-item">
+                                                            {!! apply_filters
+                                                                (
+                                                        'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+                                                        sprintf(
+                                                            '<a href="%s" data-quantity="%s" class="%s" %s><i class="icon-shopping-cart"></i></a>',
+                                                            esc_url( $product->add_to_cart_url() ),
+                                                            esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+                                                            esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+                                                            isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+                                                            esc_html( $product->add_to_cart_text() )
+                                                        ),
+                                                        $product,
+                                                        $args
+                                                    ) !!}
+                                                        </span>
+                                                    </span>
+                                                        </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <?php endwhile;
+                                }
+                                wp_reset_postdata();
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--=======  End of product double row slider wrapper  =======-->
+        </div>
+    </div>
+    <div class="product-single-row-double-slider-area mb-40">
+        <div class="container">
+
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <!--=======  section title  =======-->
+
+                    <div class="section-title mb-20">
+                        <h2>{{ get_field('two_slide_title') }}</h2>
+                    </div>
+                    <!--=======  End of section title  =======-->
+                </div>
+
+                <div class="col-lg-5">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=======  product single row slider wrapper  =======-->
+                    <div class="product-double-row-slider-wrapper">
+                        <div class="ht-half-slider">
+                            <?php
+                            $args = array(
+                                'post_type' => 'product',
+                                'posts_per_page' => -1,
+                                'tax_query'      => array( array(
+                                    'taxonomy'   => 'product_cat',
+                                    'field'      => 'term_id',
+                                    'terms'      => get_field('two_slide_product_category'),
+                                ) )
+                            );
+                            $loop = new WP_Query($args);
+                            if ( $loop->have_posts() ) :
+                            while ( $loop->have_posts() ) : $loop->the_post();
+                            $product = wc_get_product(get_the_ID());
+                            ?>
+                            <div>
+                                <div class="double-slider-single-item-wrapper">
+                                    <div class="double-slider-single-item">
+                                        <div class="double-slider-single-item__inner-slider">
+                                            <div class="big-image-slider-wrapper">
+                                                    <div class="big-image-slider-single-item">
+                                                        <img src="{{wp_get_attachment_url( $product->get_image_id() )}}"/>
+                                                        @if(sale_badge_percentage())
+                                                            <span class="discount-label discount-label--green">{{ sale_badge_percentage() }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="double-slider-single-item__content mt-20">
+                                            <p class="product-title mb-15">
+                                                <a href="{{ get_permalink() }}">{{ get_the_title() }}</a>
+                                            </p>
+                                            <p class="product-short-desc mb-25">{!! the_excerpt() !!}</p>
+                                            <p class="product-price product-price--medium">
+                                                        <span class="discounted-price">
+                                                            {!! $product->get_price_html() !!}
+                                                        <span class="cart-icon buy-item"
+                                                              data-id="{{$product->get_id()}}">
+                                                        <span class="buy-item">
+                                                            {!! apply_filters
+                                                                (
+                                                        'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+                                                        sprintf(
+                                                            '<a href="%s" data-quantity="%s" class="%s" %s><i class="icon-shopping-cart"></i></a>',
+                                                            esc_url( $product->add_to_cart_url() ),
+                                                            esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+                                                            esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+                                                            isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+                                                            esc_html( $product->add_to_cart_text() )
+                                                        ),
+                                                        $product,
+                                                        $args
+                                                    ) !!}
+                                                        </span>
+                                                    </span>
+                                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            endwhile;
+                            endif;
+                            ?>
+                        </div>
+                </div>
+                    <!--=======  End of product single row slider wrapper  =======-->
+            </div>
     @endwhile
+
 @endsection

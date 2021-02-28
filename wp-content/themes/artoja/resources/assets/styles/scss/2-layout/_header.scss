@@ -1319,6 +1319,9 @@
         @media #{$large-mobile}{
             background-color: $apple-green-light;
         }
+        @media #{$tablet-device}{
+            background-color: $apple-green-light;
+        }
     }
     #main-mobile-nav {
         display: none;

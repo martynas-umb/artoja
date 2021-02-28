@@ -35,7 +35,9 @@
     margin-bottom: 0;
 
     .discounted-price{
-        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between!important;
         @include font-prop(16px, $apple-green, 700, 22px);
     }
 
@@ -117,18 +119,16 @@
     }
 
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 0;
+    left: 0;
     right: auto;
     background-repeat: no-repeat;
     background-position: left center;
     color: $white;
-    width: 60px;
-    height: 25px;
-    padding-left: 10px;
-    line-height: 21px;
-    font-size: 12px;
+    padding: 8px 12px;
+    font-size: 14px;
     font-weight: 600;
+    background-color: $pomegranate-red;
 }
 
 .hover-icons{
@@ -167,11 +167,7 @@
 }
 
 .cart-icon{
-    display: inline-block;
-
-    position: absolute;
-    bottom: 35px;
-    right: 15px;
+    display: block;
 
     &--double-slider{
         right: -20px;
@@ -1053,18 +1049,21 @@
 
     .product-price{
         .discounted-price{
-            color: $apple-green-light;
             display: flex;
-            flex-direction: row-reverse;
-
-            .amount:first-child {
-                color: $apple-green-light;
-            }
-            .amount:last-child{
-                color: #dedede;
-            }
-
+            color: #868686;
+            justify-content: flex-start;
         }
+        #priceAfter span{
+            color: $apple-green-light;
+            bdi {
+                margin-right: 20px;
+            }
+        }
+        #priceBefore span{
+            color: #868686;
+            text-decoration: line-through;
+        }
+
         .main-price{
             color: $apple-green-light;
             &.discounted{

@@ -42,7 +42,15 @@
         ul{
             display: grid;
             grid-template-columns: auto auto auto;
-
+            @media #{$tablet-device}{
+                grid-template-columns: auto auto;
+            }
+            @media #{$small-mobile}{
+                grid-template-columns: auto auto;
+            }
+            @media #{$extra-small-mobile}{
+                grid-template-columns: auto;
+            }
             li{
                 display: list-item;
 
@@ -252,7 +260,6 @@
         }
     }
 }
-
 /*=====  End of blue page style  ======*/
 
 
